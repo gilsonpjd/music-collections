@@ -3,6 +3,7 @@ package com.musiccollections.service;
 import com.musiccollections.converter.UserTransformer;
 import com.musiccollections.dto.UserPatchRequest;
 import com.musiccollections.dto.UserRequest;
+import com.musiccollections.exceptions.ResourceNotFoundException;
 import com.musiccollections.model.User;
 import com.musiccollections.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -3,6 +3,7 @@ package com.musiccollections.service;
 import com.musiccollections.converter.SongTransformer;
 import com.musiccollections.dto.SongPatchRequest;
 import com.musiccollections.dto.SongRequest;
+import com.musiccollections.exceptions.ResourceNotFoundException;
 import com.musiccollections.model.Song;
 import com.musiccollections.repository.SongRepository;
 import org.springframework.beans.factory.annotation.Autowired;
