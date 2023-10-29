@@ -1,13 +1,27 @@
-package com.musiccollections.connection;
+package com.musiccollections.database;
 
 import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
+import java.util.Properties;
 
 public class DatabaseConnector {
-    private static final String URL = System.getenv("DATABASE_URL");
-    private static final String USER = System.getenv("POSTGRES_USER");
-    private static final String PASSWORD = System.getenv("POSTGRES_PASSWORD");
+    private Connection con;
 
-    public static Connection connect(){
-        
+    public DatabaseConnector(String url, String userName, String password) throws SQLException, ClassNotFoundException {
+        this.con = this.createConnection(url, userName, password);
+    }
+
+    private Connection createConnection(String url, String userName, String password) throws SQLException, ClassNotFoundException {
+        Class.forName("org.postgresql.Driver");
+        Properties props = new Properties();
+        props.setProperty("user", userName);
+        props.setProperty("password", password);
+        return DriverManager.getConnection(url, props);
+    }
+
+    public Connection getConnection() {
+        return this.con;
     }
 }
+
