@@ -1,7 +1,6 @@
 package com.musiccollections;
 
 import com.musiccollections.database.DatabaseConnector;
-import lombok.Value;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
@@ -22,7 +21,6 @@ public class MusicCollectionsApplication {
     public void initializeDatabaseConnector() {
         try {
             DatabaseConnector databaseConnector = new DatabaseConnector(url, userName, password);
-            // Use 'databaseConnector' as needed in your application
         } catch (SQLException | ClassNotFoundException e) {
             throw new RuntimeException(e);
         }
