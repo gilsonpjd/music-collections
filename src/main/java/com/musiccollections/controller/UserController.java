@@ -39,8 +39,8 @@ public class UserController {
 
     @Operation(summary = "Get an User by its id")
     @GetMapping("/{id}")
-    public ResponseEntity<UserResponse> findById(@PathVariable Integer id) {
-        return ResponseEntity.ok(this.userTransformer.toResponse(this.userService.findById(id)));
+    public ResponseEntity<UserResponse> findId(@PathVariable Integer id) {
+        return ResponseEntity.ok(this.userTransformer.toResponse(this.userService.findId(id)));
     }
 
     @Operation(summary = "Create an User")

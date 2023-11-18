@@ -39,7 +39,7 @@ public class PlaylistController {
     @GetMapping("/{id}")
     public ResponseEntity<PlaylistResponse> findById(@PathVariable Integer id) {
         return ResponseEntity.ok(this.playlistTransformer
-                .toResponse(this.playlistService.findById(id)));
+                .toResponse(this.playlistService.findId(id)));
     }
 
     @Operation(summary = "Create a Playlist")
@@ -60,7 +60,7 @@ public class PlaylistController {
     @Operation(summary = "Delete a Playlist")
     @DeleteMapping("/{id}")
     public ResponseEntity<?> delete(@PathVariable Integer id) {
-        this.playlistService.delete(id);
+        this.playlistService.deleteById(id);
         return ResponseEntity.noContent().build();
     }
 

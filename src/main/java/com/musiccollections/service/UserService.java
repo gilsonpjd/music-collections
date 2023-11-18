@@ -29,9 +29,8 @@ public class UserService {
         return this.userRepository.findAll();
     }
 
-    public User findById(Integer id) {
-        return this.userRepository.findById(id)
-                .orElseThrow(() -> new ResourceNotFoundException("User not found"));
+    public User findId(Integer id) {
+        return this.userRepository.findId(id);
     }
 
     public User create(UserRequest userRequest) {
@@ -39,17 +38,17 @@ public class UserService {
     }
 
     public void delete(Integer id) {
-        this.userRepository.delete(this.findById(id));
+        this.userRepository.deleteById(this.findId(id).getId());
     }
 
     public User updateUser(Integer id, UserRequest requested) {
-        User toBeUpdated = findById(id);
+        User toBeUpdated = findId(id);
         toBeUpdated.setName(requested.getName());
         toBeUpdated.setEmail(requested.getEmail());
         return this.userRepository.save(toBeUpdated);
     }
     public User patch(Integer id, UserPatchRequest requested) {
-        User toBeUpdated = findById(id);
+        User toBeUpdated = findId(id);
         toBeUpdated.setName(nonNull(requested.getName()) ? requested.getName() : toBeUpdated.getName());
         toBeUpdated.setEmail(nonNull(requested.getEmail()) ? requested.getEmail() : toBeUpdated.getEmail());
         return this.userRepository.save(toBeUpdated);

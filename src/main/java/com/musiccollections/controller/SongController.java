@@ -37,7 +37,7 @@ public class SongController {
     @Operation(summary = "Get a Song by its id")
     @GetMapping("/{id}")
     public ResponseEntity<SongResponse> findById(@PathVariable Integer id) {
-        return ResponseEntity.ok(this.songTransformer.toResponse(this.songService.findById(id)));
+        return ResponseEntity.ok(this.songTransformer.toResponse(this.songService.findId(id)));
     }
 
     @Operation(summary = "Create a Song")

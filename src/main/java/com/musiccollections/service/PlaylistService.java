@@ -31,42 +31,41 @@ public class PlaylistService {
         return this.playlistRepository.findAll();
     }
 
-    public Playlist findById(Integer id) {
-        return this.playlistRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("Playlist not found"));
+    public Playlist findId(Integer id) {
+        return this.playlistRepository.findId(id);
     }
 
 
     public Playlist create(PlaylistRequest playlistRequest) {
-        User user = userService.findById(playlistRequest.getUserId());
+        User user = userService.findId(playlistRequest.getUserId());
         Playlist playlist = this.playlistTransformer.toDomain(playlistRequest, user);
         return this.playlistRepository.save(playlist);
     }
 
     public Playlist update(PlaylistRequest playlistRequest) {
-        Playlist toBeUpdate = findById(playlistRequest.getUserId());
+        Playlist toBeUpdate = findId(playlistRequest.getUserId());
         toBeUpdate.setTitle(playlistRequest.getTitle());
         return this.playlistRepository.save(toBeUpdate);
     }
 
-    public void delete(Integer id) {
-        this.playlistRepository.delete(findById(id));
+    public void deleteById(Integer id) {
+        this.playlistRepository.delete(findId(id));
     }
 
     public Playlist addSong(Integer playlistId, Integer songId) {
-        Playlist playlist = findById(playlistId);
-        playlist.getSongs().add(this.songService.findById(songId));
+        Playlist playlist = findId(playlistId);
+        playlist.getSongs().add(this.songService.findId(songId));
         return this.playlistRepository.save(playlist);
     }
 
     public Playlist removeSong(Integer playlistId, Integer songId) {
-        Playlist playlist = findById(playlistId);
-        playlist.getSongs().remove(this.songService.findById(songId));
+        Playlist playlist = findId(playlistId);
+        playlist.getSongs().remove(this.songService.findId(songId));
         return this.playlistRepository.save(playlist);
     }
 
     public List<Playlist> findByUser(Integer userId) {
-        User user = this.userService.findById(userId);
+        User user = this.userService.findId(userId);
         return this.playlistRepository.findByUser(user);
 
     }
