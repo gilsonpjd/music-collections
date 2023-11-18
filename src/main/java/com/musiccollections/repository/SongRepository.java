@@ -15,12 +15,12 @@ import java.util.List;
 public interface SongRepository extends JpaRepository<Song, Integer> {
 
     @Override
-    @Query("SELECT s FROM Song u")
+    @Query("SELECT s FROM Song s")
     List<Song> findAll();
     @Query("SELECT s FROM Song s WHERE s.id = :id")
     Song findId(@NonNull @Param("id") Integer id);
     @Modifying
-    @Query("DELETE FROM Song s WHERE u.id = :id")
+    @Query("DELETE FROM Song s WHERE s.id = :id")
     void deleteById(@NonNull @Param("id")Integer id);
 
 
